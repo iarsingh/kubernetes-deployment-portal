@@ -1,4 +1,14 @@
+nameOverride: billing
 image:
   repository: billing
   tag: "0.1.0"
 replicas: 2
+port: 8080
+healthPath: /healthz
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
