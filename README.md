@@ -76,3 +76,7 @@ Every container gets readiness and liveness probes on `health_path`, `runAsNonRo
 - An environment variable whose name looks like a secret (`PASSWORD`, `SECRET`, `TOKEN`, `API_KEY`, `PRIVATE_KEY`). Mount a Secret instead of putting the value in the manifest.
 
 `helm/service` is the chart shape for the same values. `web/src/App.tsx` renders the manifest and the values side by side.
+
+## Ops plane
+
+Workspaces, tenant isolation, job approval, and audit live under `/v1`. Production apply is refused. See `docs/ARCHITECTURE.md`.

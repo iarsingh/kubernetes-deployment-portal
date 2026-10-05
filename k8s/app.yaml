@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubernetes-deployment-portal
+  labels:
+    app: kubernetes-deployment-portal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubernetes-deployment-portal
+  template:
+    metadata:
+      labels:
+        app: kubernetes-deployment-portal
+    spec:
+      containers:
+        - name: api
+          image: kubernetes-deployment-portal:local
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /v1/readyz
+              port: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubernetes-deployment-portal
+spec:
+  selector:
+    app: kubernetes-deployment-portal
+  ports:
+    - port: 80
+      targetPort: 8080

@@ -1,9 +1,11 @@
+from portal.ops import router as ops_router
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 from portal.render import PROFILES, RenderError, helm_values, render
 
 app = FastAPI(title="Kubernetes portal")
+app.include_router(ops_router, prefix="/v1")
 
 
 class Release(BaseModel):
