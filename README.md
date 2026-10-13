@@ -1,5 +1,12 @@
 # Kubernetes deployment portal
 
+## Overview
+
+A small portal that turns a short form into Kubernetes manifests. Given a name, a pinned image, replicas, a resource profile and a port, the API returns a Deployment, a Service and, for two or more replicas, a PodDisruptionBudget, plus matching Helm values. Manifests are built as data and serialized with PyYAML, and every container gets probes, `runAsNonRoot` and a read-only root filesystem. It refuses `latest` or missing image tags, names that are not DNS labels, and environment variables that look like secrets.
+
+- **Built with:** Python, FastAPI, PyYAML, Helm, React, TypeScript, Docker Compose, GitHub Actions
+- **Scope:** Local lab with tests; `applied` is always false because the portal never calls a cluster.
+
 <!-- project-guide:start -->
 ## Project guide
 
